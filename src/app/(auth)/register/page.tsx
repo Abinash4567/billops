@@ -10,13 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
 
 export default function Login() {
@@ -159,7 +152,7 @@ export default function Login() {
                 {/* Sign in Prompt */}
                 <p className='text-center text-sm pt-3'>
                     If you have an account, please&nbsp;
-                    <Link className='hover:underline font-bold text-sky-700' href='/login'>
+                    <Link className='hover:underline font-bold text-blue-500' href='/login'>
                         Sign in
                     </Link>
                 </p>
