@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../../../public/logo.png';
 
+
 export default function header() {
   return (
     <div className='flex justify-between bg-black border-b-2'>
