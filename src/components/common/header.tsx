@@ -7,7 +7,7 @@ import logo from '../../../public/logo.png';
 
 export default function header() {
   return (
-    <div className='flex justify-between bg-black border-b-2'>
+    <div className='flex justify-between border-b-2'>
       <div className='ml-2 mt-6'><Image
                 src={logo}
                 alt="Description of the image"

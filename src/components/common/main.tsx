@@ -9,7 +9,7 @@ function main() {
                 <div>Business</div>
                 <div>Essentials</div>
                 <div>Simplified</div>
-                <div className='text-white w-96 mt-2 font-normal text-sm'>Effortlessly manage all your bills and subscriptions in one place. Save time, money, and gain peace of mind. Simplify Your Billing & Subscriptions - Take Control Today!</div>
+                <div className='text-white w-96 mt-2 font-semibold text-sm'>Effortlessly manage all your bills and subscriptions in one place. Save time, money, and gain peace of mind. Simplify Your Billing & Subscriptions - Take Control Today!</div>
             </div>
             
             <div className='w-1/2 m-14'>
