@@ -8,7 +8,7 @@ interface AuthLayoutProps {
 
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
     return (
-        <main className='flex min-h-screen '>
+        <main className='flex flex-col min-h-screen md:flex-row'>
             <div className='flex flex-col basis-1/2 justify-items-center mt-56 ml-36'>
             <Image
                 src={backgroundImage}

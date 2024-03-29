@@ -19,7 +19,7 @@ export default function header() {
         <div className='font-semibold text-sm p-3 m-1'><Link href='#'>Docs</Link></div>
         <div className='font-semibold text-sm p-3 m-1'><Link href='#'>Contact us</Link></div>
       </div>
-      <div className='font-semibold text-sm border border-blue-700 self-center p-2 rounded-3xl mr-5 bg-blue-700'><Link href='#'>Start building</Link></div>
+      <div className='font-semibold text-sm border border-blue-700 self-center p-2 rounded-3xl mr-5 bg-blue-700'><Link href='/login'>Start building</Link></div>
     </div>
   )
 }
