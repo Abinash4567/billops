@@ -10,10 +10,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast"
+
 
 
 export default function Login() {
     const router = useRouter();
+    const { toast } = useToast()
 
     //validate form
     const FormSchema = z.object({
@@ -47,33 +50,41 @@ export default function Login() {
         resolver: zodResolver(FormSchema),
         defaultValues: {
             email: "",
-            password: ""
+            password: "",
+            orgName: ""
         }
     })
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
         console.log(values);
-        // const response = await fetch('/api/user', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         username: values.username,
-        //         email: values.email,
-        //         password: values.password
-        //     })
-        // })
-        // console.log(response);
+        const response = await fetch('/api/auth/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                orgName: values.orgName,
+                email: values.email,
+                password: values.password
+            })
+        })
+        console.log(response);
 
-        // if(response.ok)
-        // {
-        //     router.push('/login');
-        // }
-        // else
-        // {
-        //     console.error(`Registration failed.`)
-        // }
+        if (response.ok) {
+            toast({
+                title: "Account Created Successfully.",
+                description: "Proceed to login",
+            })
+            router.push('/login');
+        }
+        else {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "There was a problem creating your account.",
+            })
+            console.error(`Registration failed.`)
+        }
     }
 
     return (
