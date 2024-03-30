@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { Button } from "@/components/ui/button";
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { db } from "@/lib/prisma";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export default function Login() {
     const router = useRouter();
@@ -34,6 +34,31 @@ export default function Login() {
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
         console.log(values);
+        const response = await fetch('/api/dummy')
+        console.log(response);
+
+
+            // try {
+            //     for (let i = 0; i < 20; i++) {
+            //         const orgData = {
+            //             orgName: faker.company.name(),
+            //             password: faker.internet.password(),
+            //             workEmail: faker.internet.email(),
+            //         };
+            //         const response = await db.orgModel.create({ data: orgData });
+            //         console.log(response);
+            //     }
+            //     console.log(`Successfully created 20 dummy organizations!`);
+            // } catch (error) {
+            //     console.error("Error seeding data:", error);
+            // } finally {
+            //     await db.$disconnect();
+            // }
+
+
+
+
+
         // const signInData = await signIn(`credentials`, {
         //     email: values.email,
         //     password: values.password,
@@ -47,7 +72,7 @@ export default function Login() {
         // else{
         //     router.push('/');
         // }
-    }
+}
 
     return (
         <div className="border border-sky-300 rounded-2xl mt-44 ml-16 p-5 w-4/5">

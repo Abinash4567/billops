@@ -14,42 +14,59 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-        
 
 model OrgModel {
-  id         Int   @id @default(autoincrement())
-  orgName    String   @unique
-  password   String
-  address    String?
-  workEmail  String
-  contact    String?  @unique
-  subscriptions SubModel[]
-  created_at DateTime @default(now())
+  id                      Int @id @default(autoincrement())
+  orgName                 String   @unique
+  password                String
+  address                 String?
+  workEmail               String
+  contact                 String?  @unique
+  subscriptions           SubModel[]
+  created_at              DateTime @default(now())
+  
+  @@index(fields: [orgName])
 }
 
 model SubModel {
-  id               Int   @id @default(autoincrement())
-  organization     OrgModel @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  organizationId   Int
-  type             String
-  intendedAudience String
-  price            Decimal
-  features         Json
-  couponCodes      Json
-  users            User[]
-  createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
+  id                      Int      @id @default(autoincrement())
+  organization            OrgModel @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  organizationId          Int
+  type                    String
+  intendedAudience        String
+  price                   Decimal
+  features                Json
+  couponCodes             Json
+  users                   UserModel[]
+  trans                   TranscationModel[]
+  createdAt               DateTime     @default(now())
+  updatedAt               DateTime     @updatedAt
+
+  @@index(fields: [organizationId])
 }
 
 
-model User {
-  id          String   @id @default(uuid()) @db.Uuid
-  userId      String   @unique
-  name        String   
-  email       String   
-  transactions Json
-  createdAt   DateTime @default(now())
-  planExpiry  DateTime?           
-  planId      Int
-  plan        SubModel     @relation(fields: [planId], references: [id])
+model UserModel {
+  id                      Int   @id @default(autoincrement())
+  userId                  String
+  name                    String   
+  email                   String   
+  createdAt               DateTime  @default(now())
+  planExpiry              DateTime? 
+  trans                   TranscationModel[]         
+  planId                  Int
+  plan                    SubModel  @relation(fields: [planId], references: [id])
+
+  @@index(fields: [name])
+}
+
+model TranscationModel {
+  id          String @id @default(uuid()) @db.Uuid
+  userId      Int
+  user        UserModel @relation(fields: [userId], references: [id])
+  subId       Int
+  sub         SubModel @relation(fields: [subId], references: [id])
+  receipt     Json?
+
+  @@index(fields: [userId, subId])
 }
