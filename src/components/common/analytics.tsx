@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/card'
 export default function Analytics() {
     return (
         <div className='mt-8 flex flex-row justify-between'>
-            <Card className='border w-64'>
+            <Card className='border w-64 border-slate-400'>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
                     <DollarSign size={20} color="#ffffff" strokeWidth={1.25} />
@@ -18,7 +18,7 @@ export default function Analytics() {
                 </CardContent>
             </Card>
 
-            <Card className='border w-64'>
+            <Card className='border w-64 border-slate-400'>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Total Subscription</CardTitle>
                     <User size={20} color="#ffffff" strokeWidth={1.25} />
@@ -31,7 +31,7 @@ export default function Analytics() {
                 </CardContent>
             </Card>
 
-            <Card className='border w-64'>
+            <Card className='border w-64 border-slate-400'>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Retention</CardTitle>
                     <UserRoundPlus size={20} color="#ffffff" strokeWidth={1.25} />
@@ -44,7 +44,7 @@ export default function Analytics() {
                 </CardContent>
             </Card>
 
-            <Card className='border w-64'>
+            <Card className='border w-64 border-slate-400'>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Potentials</CardTitle>
                     <UserRoundCog size={20} color="#ffffff" strokeWidth={1.25} />
