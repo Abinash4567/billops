@@ -1,6 +1,7 @@
 import { db } from "@/lib/prisma";
 import { hash } from 'bcryptjs';
 import * as z from 'zod';
+import generateRandomString from "@/lib/common/random";
 
 const userSchema = z.object({
     email: z.string()
@@ -24,8 +25,8 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { email, orgName, password } = userSchema.parse(body);
 
-        const exists_user_email = await db.user.findUnique({
-            where: { email: email }
+        const exists_user_email = await db.orgModel.findFirst({
+            where: { workEmail: email }
         })
         if (!!exists_user_email) {
             return new Response(JSON.stringify({ user: null, message: "This email has a account associated. Please Sign in" }), {
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
             });
         }
 
-        const exists_org_name = await db.user.findFirst({
+        const exists_org_name = await db.orgModel.findFirst({
             where: { orgName: orgName }
         })
         if (!!exists_org_name) {
@@ -49,13 +50,14 @@ export async function POST(req: Request) {
         }
 
         const hashedPassword = await hash(password, 10);
-        const newUser = await db.user.create({
-            data: {
-                orgName,
-                email,
-                password: hashedPassword
-            }
-        });
+        const randomString: string = generateRandomString(10);
+        const data= {
+            orgName: orgName,
+            workEmail: email,
+            password: hashedPassword,
+            APIKey: randomString
+        }
+        const newUser = await db.orgModel.create({data});
 
         const { password: not_shown, ...rest } = newUser;
         return new Response(JSON.stringify({ user: rest, message: "User created successfully" }), {

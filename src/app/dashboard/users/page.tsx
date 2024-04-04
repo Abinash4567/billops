@@ -6,7 +6,7 @@ export default function Users() {
   return (
     <>
       <div className='mt-7 ml-5 text-4xl font-extrabold leading-none tracking-tight text-slate-300'><span className="text-blue-600">Nestle&apos;s</span> Users</div>
-   
+
       <div className='grid grid-flow-col justify-stretch w-[calc(100vw-224px)] mt-10 ml-5 border border-slate-400 rounded-md p-3'>
 
         <div className='justify-stretch text-xs text-slate-300 font-semibold leading-relaxed'>

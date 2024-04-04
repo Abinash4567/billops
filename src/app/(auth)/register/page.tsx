@@ -33,7 +33,7 @@ export default function Login() {
             .string()
             .min(1, "Organization name cannot be empty")
             .regex(/^[a-zA-Z0-9]*$/)
-            .max(20, "Organization name should be less than 20 characeters"),
+            .max(20, "Organization name should be less than 20 characters"),
 
         confirmPassword: z
             .string()
@@ -56,7 +56,7 @@ export default function Login() {
     })
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-        console.log(values);
+        // console.log(values);
         const response = await fetch('/api/auth/user', {
             method: 'POST',
             headers: {
@@ -71,6 +71,7 @@ export default function Login() {
         console.log(response);
 
         if (response.ok) {
+
             toast({
                 title: "Account Created Successfully.",
                 description: "Proceed to login",

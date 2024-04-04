@@ -1,20 +1,21 @@
 "use client";
-
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { db } from "@/lib/prisma";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
+import { toast } from "@/components/ui/use-toast";
+
 
 export default function Login() {
     const router = useRouter();
-
     const FormSchema = z.object({
-        email: z.string()
+        email: z
+            .string()
             .min(1, "Email is required")
             .email("Invalid Email"),
 
@@ -34,44 +35,30 @@ export default function Login() {
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
         console.log(values);
-        const response = await fetch('/api/dummy')
-        console.log(response);
 
+        const signInData = await signIn(`credentials`, {
+            WorkEmail: values.email,
+            password: values.password,
+            redirect: false
+        });
 
-            // try {
-            //     for (let i = 0; i < 20; i++) {
-            //         const orgData = {
-            //             orgName: faker.company.name(),
-            //             password: faker.internet.password(),
-            //             workEmail: faker.internet.email(),
-            //         };
-            //         const response = await db.orgModel.create({ data: orgData });
-            //         console.log(response);
-            //     }
-            //     console.log(`Successfully created 20 dummy organizations!`);
-            // } catch (error) {
-            //     console.error("Error seeding data:", error);
-            // } finally {
-            //     await db.$disconnect();
-            // }
-
-
-
-
-
-        // const signInData = await signIn(`credentials`, {
-        //     email: values.email,
-        //     password: values.password,
-        //     redirect: false
-        // });
-
-        // if(signInData?.error)
-        // {
-        //     console.log(signInData.error);
-        // }
-        // else{
-        //     router.push('/');
-        // }
+        console.log(signInData);
+        if(signInData?.error)
+        {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Provided Credentials were wrong.",
+                description: "Try again with correct credentials.",
+            })
+            console.log(signInData.error);
+        }
+        else{
+            toast({
+                title: "Success Authentication.",
+                description: "Proceeding to your Dashboard.",
+            })
+            router.push('/dashboard');
+        }
 }
 
     return (

@@ -1,13 +1,20 @@
 import { DollarSign, User, UserRoundCog, UserRoundPlus } from 'lucide-react'
 import React from 'react'
-import { Card, CardHeader, CardTitle, CardContent } from '../ui/card'
+import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
+import { fetchRevenue } from '@/lib/dashboard/serverMethods';
 
-export default function Analytics() {
+interface IPROPS{
+    orgId: String;
+}
+
+export default async function Analytics( { orgId }: IPROPS ) {
+    const res = await fetchRevenue( { orgId } );
+    console.log(res);
     return (
         <div className='mt-8 flex flex-row justify-between'>
             <Card className='border w-64 border-slate-400'>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                    <CardTitle className="text-sm font-medium">Total Revenue </CardTitle>
                     <DollarSign size={20} color="#ffffff" strokeWidth={1.25} />
                 </CardHeader>
                 <CardContent>

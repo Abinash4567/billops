@@ -2,6 +2,8 @@ import Analytics from "@/components/common/analytics";
 import Chart from "@/components/common/chart";
 import Sales, { SalesProps } from "@/components/common/sales";
 import { CardContent } from "@/components/ui/card";
+import { authOptions } from "../api/auth/[...nextauth]/options";
+import { Session, getServerSession } from "next-auth";
 
 
 const uesrSalesData: SalesProps[] = [
@@ -32,12 +34,14 @@ const uesrSalesData: SalesProps[] = [
   }
 ];
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const session: Session | null = await getServerSession(authOptions);
+  const orgId:String = session?.user.id!;
 
   return (
     <div className='mt-12 ml-6 w-full'>
       <h2 className="text-3xl font-bold ">Hi, Welcome back 👋</h2>
-      <Analytics />
+      <Analytics orgId = {orgId} />
       <div className="flex mt-5">
             <Chart />
           

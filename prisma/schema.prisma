@@ -61,12 +61,15 @@ model UserModel {
 }
 
 model TranscationModel {
-  id         String    @id @default(uuid()) @db.Uuid
+  id         Int    @id @default(autoincrement())
   userId     Int
   user       UserModel @relation(fields: [userId], references: [id])
   subId      Int
   sub        SubModel  @relation(fields: [subId], references: [id])
   receipt    Json?
+  amount     Int
+  status     Boolean
+  orderId    String
   created_at DateTime  @default(now())
 
   @@index(fields: [userId, subId])
