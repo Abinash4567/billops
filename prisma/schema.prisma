@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model OrgModel {
+  id            Int        @id @default(autoincrement())
+  orgName       String     @unique
+  APIKey        String     @unique
+  password      String
+  address       String?
+  workEmail     String
+  contact       String?    @unique
+  subscriptions SubModel[]
+  created_at    DateTime   @default(now())
+
+  @@index(fields: [orgName])
+}
+
+model SubModel {
+  id               Int                @id @default(autoincrement())
+  organization     OrgModel           @relation(fields: [organizationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  organizationId   Int
+  type             String
+  intendedAudience String
+  price            Decimal
+  features         Json
+  couponCodes      Json
+  validity         Int
+  users            UserModel[]
+  trans            TranscationModel[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  @@index(fields: [organizationId])
+}
+
+model UserModel {
+  id         Int                @id @default(autoincrement())
+  userId     String
+  name       String
+  email      String
+  createdAt  DateTime           @default(now())
+  planExpiry DateTime?
+  trans      TranscationModel[]
+  planId     Int
+  plan       SubModel           @relation(fields: [planId], references: [id])
+
+  @@index(fields: [name])
+}
+
+model TranscationModel {
+  id         Int    @id @default(autoincrement())
+  userId     Int
+  user       UserModel @relation(fields: [userId], references: [id])
+  subId      Int
+  sub        SubModel  @relation(fields: [subId], references: [id])
+  receipt    Json?
+  amount     Int
+  status     Boolean
+  orderId    String
+  created_at DateTime  @default(now())
+
+  @@index(fields: [userId, subId])
+}

@@ -1,0 +1,24 @@
+{
+"id": "pay_KbCFyQ0t9Lmi1n",        
+"amount": 1000,
+"currency": "INR",
+"status": "authorized",
+"method": "netbanking",
+
+"card_id": null,
+"bank": "IBKL",
+"wallet": null,
+"vpa": null,
+
+"email": "gaurav.kumar@gmail.com",
+"contact": "+919000090000",
+
+"notes": {
+"address": "Razorpay Corporate Office"
+},
+
+"acquirer_data": {
+"bank_transaction_id": "5733649"
+},
+"created_at": 1667397881
+}pay_KbCFyQ0t9Lmi1n

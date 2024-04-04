@@ -1,20 +1,21 @@
 "use client";
-
-import React from "react";
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { Button } from "@/components/ui/button";
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
+import { toast } from "@/components/ui/use-toast";
+
 
 export default function Login() {
     const router = useRouter();
-
     const FormSchema = z.object({
-        email: z.string()
+        email: z
+            .string()
             .min(1, "Email is required")
             .email("Invalid Email"),
 
@@ -34,20 +35,31 @@ export default function Login() {
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
         console.log(values);
-        // const signInData = await signIn(`credentials`, {
-        //     email: values.email,
-        //     password: values.password,
-        //     redirect: false
-        // });
 
-        // if(signInData?.error)
-        // {
-        //     console.log(signInData.error);
-        // }
-        // else{
-        //     router.push('/');
-        // }
-    }
+        const signInData = await signIn(`credentials`, {
+            WorkEmail: values.email,
+            password: values.password,
+            redirect: false
+        });
+
+        console.log(signInData);
+        if(signInData?.error)
+        {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Provided Credentials were wrong.",
+                description: "Try again with correct credentials.",
+            })
+            console.log(signInData.error);
+        }
+        else{
+            toast({
+                title: "Success Authentication.",
+                description: "Proceeding to your Dashboard.",
+            })
+            router.push('/dashboard');
+        }
+}
 
     return (
         <div className="border border-sky-300 rounded-2xl mt-44 ml-16 p-5 w-4/5">
