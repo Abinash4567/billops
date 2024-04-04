@@ -41,8 +41,6 @@ export default function Login() {
             password: values.password,
             redirect: false
         });
-
-        console.log(signInData);
         if(signInData?.error)
         {
             toast({
