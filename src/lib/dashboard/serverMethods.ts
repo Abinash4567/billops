@@ -1,3 +1,5 @@
+import { userDetail } from "@/app/api/users/route";
+import { SalesProps } from "@/components/common/sales";
 import Env from "@/config/env";
 
 export async function fetchRevenue({ orgId }: { orgId: String }) {
@@ -17,8 +19,7 @@ export async function fetchRevenue({ orgId }: { orgId: String }) {
     return response?.amount;
 }
 
-export async function fetchChangedRevenue({ orgId }: { orgId: String }) 
-{
+export async function fetchChangedRevenue({ orgId }: { orgId: String }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/revenueChange`, {
         method: 'POST',
         headers: {
@@ -35,8 +36,7 @@ export async function fetchChangedRevenue({ orgId }: { orgId: String })
     return response?.amount;
 }
 
-export async function fetchTotalUsers({ orgId }: { orgId: String }) 
-{
+export async function fetchTotalUsers({ orgId }: { orgId: String }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/usersCount`, {
         method: 'POST',
         headers: {
@@ -54,8 +54,7 @@ export async function fetchTotalUsers({ orgId }: { orgId: String })
     return response?.amount;
 }
 
-export async function fetchChangedUsers({ orgId }: { orgId: String }) 
-{
+export async function fetchChangedUsers({ orgId }: { orgId: String }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/usersChange`, {
         method: 'POST',
         headers: {
@@ -73,7 +72,7 @@ export async function fetchChangedUsers({ orgId }: { orgId: String })
     return response?.numbers;
 }
 
-export async function fetchRetention({ orgId }: { orgId: String }){
+export async function fetchRetention({ orgId }: { orgId: String }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/retention`, {
         method: 'POST',
         headers: {
@@ -92,7 +91,7 @@ export async function fetchRetention({ orgId }: { orgId: String }){
 }
 
 
-export async function fetchRetentionChange({ orgId }: { orgId: String }){
+export async function fetchRetentionChange({ orgId }: { orgId: String }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/changedRetention`, {
         method: 'POST',
         headers: {
@@ -110,7 +109,7 @@ export async function fetchRetentionChange({ orgId }: { orgId: String }){
     return response?.numbers;
 }
 
-export async function fetchPotentials({ orgId }: { orgId: String }){
+export async function fetchPotentials({ orgId }: { orgId: String }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/potentials`, {
         method: 'POST',
         headers: {
@@ -128,7 +127,7 @@ export async function fetchPotentials({ orgId }: { orgId: String }){
     return response?.numbers;
 }
 
-export async function fetchPotentialsChange({ orgId }: { orgId: String }){
+export async function fetchPotentialsChange({ orgId }: { orgId: String }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/changedPotentials`, {
         method: 'POST',
         headers: {
@@ -144,4 +143,90 @@ export async function fetchPotentialsChange({ orgId }: { orgId: String }){
     }
     const response = await res.json();
     return response?.numbers;
+}
+
+
+export async function fetchTranscation({ orgId }: { orgId: String }) {
+    const res = await fetch(`${Env.APP_URL}/api/dashboard/recentSale`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            orgId: orgId
+        })
+    })
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+    const response = await res.json();
+    // console.log(response.data);
+    return [response?.data, response?.size];
+}
+
+
+export function refineData(data: { amount: number; user: { name: string; email: string } }[]): SalesProps[] {
+    return data.map((item) => ({
+        name: item.user.name,
+        email: item.user.email,
+        saleAmount: item.amount.toString(),
+    }));
+}
+
+export type RevenueData = {
+    name: string,
+    total: number
+}
+export async function fetchSales({ orgId }: { orgId: string }): Promise<Array<RevenueData>> {
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    let ans = new Array();
+
+    for (let i = 0; i < 12; i++) {
+        let mmonth = (month - i) >= 0 ? (month - i) : (month - i) + 12;
+        let yyear = (month - i) >= 0 ? year : year + 1;
+        let monthName: string = new Date(yyear, mmonth).toLocaleString('default', { month: 'long' }).substring(0, 3);
+        const res = await fetch(`${Env.APP_URL}/api/dashboard/revenueByMonth`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                orgId: orgId,
+                startDate: new Date(yyear, mmonth, 1),
+                endDate: new Date(yyear, mmonth, 31)
+            })
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch data");
+        }
+        const response = await res.json();
+        console.log(response);
+        ans.push({ name: monthName, total: response?.amount });
+    }
+    return ans;
+}
+
+export async function fetchUsers({
+    orgId,
+}: {
+    orgId: string;
+}): Promise<Array<userDetail>> {
+    const res = await fetch(`${Env.APP_URL}/api/users`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            orgId,
+        }),
+    });
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+    const response = await res.json();
+    console.log(response.data);
+    return response?.data;
 }

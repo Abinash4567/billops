@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { fetchRevenue, fetchChangedRevenue, fetchTotalUsers, fetchChangedUsers, fetchRetention, fetchRetentionChange, fetchPotentials, fetchPotentialsChange } from '@/lib/dashboard/serverMethods';
 
 interface IPROPS{
-    orgId: String;
+    orgId: string;
 }
 
 export default async function Analytics( { orgId }: IPROPS ) {

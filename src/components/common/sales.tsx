@@ -21,7 +21,7 @@ export default function Sales(props: SalesProps) {
                     </div>
                 </div>
             </section>
-            <p>{props.saleAmount}</p>
+            <p>${props.saleAmount}</p>
         </div>
     );
 }

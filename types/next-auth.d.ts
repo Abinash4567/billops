@@ -3,7 +3,7 @@ import { JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
     interface User {
-        id?: String,
+        id?: string,
         OrgName?: string,
         workEmail?: string,
     }
