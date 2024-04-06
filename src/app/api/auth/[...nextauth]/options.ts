@@ -23,6 +23,7 @@ export const authOptions: AuthOptions = {
         },
         async session({ session, token, user }: { session: Session, token: JWT, user: User }) {
             session.user = token.user as User;
+            session.maxAge = 24 * 60 * 60;
             return session;
         }
     },

@@ -10,6 +10,7 @@ declare module "next-auth" {
 
     interface Session {
         user: User;
+        maxAge: number;
     }
 }
 
