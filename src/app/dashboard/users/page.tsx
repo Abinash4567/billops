@@ -15,7 +15,7 @@ export default function Users() {
     const fetchData = async () => {
       try {
         const dat = await fetchUsers({ orgId });
-        console.log(dat);
+        // console.log(dat);
         setData(dat);
       } catch (error) {
         throw new Error("Error fetching Data");

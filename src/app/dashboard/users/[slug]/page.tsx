@@ -3,10 +3,12 @@ import { FC } from "react"
 interface PageProps {
     params: {slug: String}
 }
+
+
 const User:FC<PageProps> = ({params})=>{
     return (
     <div className="mt-6 ml-5 w-[calc(100vw-600px)]">
-        <div className="text-4xl font-bold leading-none tracking-tight text-slate-300">Username</div>
+        <div className="text-4xl font-bold leading-none tracking-tight text-slate-300">Username {params.slug}</div>
         <div className="mt-12">
             <div className="font-semibold tracking-tight text-slate-300 border-b border-b-slate-100">User details</div>
             <div className="text-slate-300 text-sm">Customer Id: <span className="text-white font-medium">sdkjn</span></div>
