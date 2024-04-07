@@ -10,7 +10,7 @@ import { IEventDetail } from '../../../types/next-auth';
 
 function Event(props: IEventDetail) {
     return (
-        <div className="bg-slate-800 rounded-lg mt-2 p-1 border-slate-600 border">
+        <div className="rounded-lg bg-slate-900 mt-2 p-1 border-slate-500 border">
         <div className="text-slate-300 text-sm">Order Id:  <span className="text-white font-medium">  {props.id}</span></div>
         <div className="text-slate-300 text-sm">Processed at:<span className="text-white font-medium">  {props.createdAt.toLocaleString().replace('-', '/').split('T')[0].replace('-', '/')}</span></div>
         <div className="text-slate-300 text-sm">Amount:<span className="text-white font-medium">  {props.amount}</span></div>

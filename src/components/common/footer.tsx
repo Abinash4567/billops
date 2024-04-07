@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Github } from 'lucide-react'
+import { Code } from 'lucide-react'
 
 function footer() {
   return (
@@ -10,7 +10,7 @@ function footer() {
         <span className='font-semibold text-white ml-6'>
           <Link href='https://github.com/Abinash4567/billops'>
             <div className='flex'>
-              <Github size={22} color="#ffffff" strokeWidth={2} />
+              <Code size={22} color="#ffffff" strokeWidth={2} />
               <span>Github</span>
             </div>
           </Link>
