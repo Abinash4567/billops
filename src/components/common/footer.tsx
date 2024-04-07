@@ -8,9 +8,9 @@ function footer() {
         <span className='font-semibold'>©2024 Copyright</span>
 
         <span className='font-semibold text-white ml-6'>
-          <Link href='#'>
+          <Link href='https://github.com/Abinash4567/billops'>
             <div className='flex'>
-              <Github size={22} color="#ffffff" strokeWidth={2.5} />
+              <Github size={22} color="#ffffff" strokeWidth={2} />
               <span>Github</span>
             </div>
           </Link>

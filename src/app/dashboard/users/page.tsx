@@ -29,19 +29,20 @@ export default function Users() {
       <div className="mt-7 ml-5 text-4xl font-extrabold leading-none tracking-tight text-slate-300">
         <span className="text-blue-600">Nestle&apos;s</span> Users
       </div>
-
-      {data.map((d, i) => (
-            <Userlist
-              key={i}
-              userId={d.userId}
-              name={d.name}
-              email={d.email}
-              planExpiry={d.planExpiry}
-              createdAt={d.createdAt}
-              trans={d.trans}
-              totalTransactionAmount={d.totalTransactionAmount}
-            />
-          ))}
+      <div className='overflow-y-auto'>
+        {data.map((d, i) => (
+              <Userlist
+                key={i}
+                userId={d.userId}
+                name={d.name}
+                email={d.email}
+                planExpiry={d.planExpiry}
+                createdAt={d.createdAt}
+                trans={d.trans}
+                totalTransactionAmount={d.totalTransactionAmount}
+              />
+            ))}
+        </div>
     </>
   );
 }

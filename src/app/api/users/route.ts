@@ -1,7 +1,5 @@
 import { db } from "@/lib/prisma";
 
-
-
 export interface userDetail {
     userId: string;
     name: string;

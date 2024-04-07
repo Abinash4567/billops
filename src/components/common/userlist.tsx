@@ -1,14 +1,19 @@
 import { userDetail } from '@/app/api/users/route'
 import React from 'react'
-import Link from 'next/link'
 import { Home, Mail, User } from 'lucide-react'
+import { useRouter } from 'next/navigation';
 
-function userlist(props: userDetail) {
+function Userlist(props: userDetail) {
+    const router = useRouter();
+    const handleClick = (userId: string)=>{
+        // console.log(`click on ${userId}`);
+        router.push(`/dashboard/users/${userId}`)
+    }
     let today = new Date();
     let bb = props.planExpiry!;
     let check = today > bb;
     return (
-        <div className='grid grid-flow-col justify-stretch w-[calc(100vw-224px)] mt-10 ml-5 border border-slate-400 rounded-md p-3 hover:bg-slate-900 transition duration-300 ease-in-out'>
+        <div onClick={()=>handleClick(props.userId)} className='grid grid-flow-col justify-stretch w-[calc(100vw-224px)] mt-10 ml-5 border border-slate-400 rounded-md p-3 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out'>
 
             <div className='justify-stretch text-xs text-slate-300 font-semibold leading-relaxed'>
                 <div>Customer Id: <span className='text-sm text-blue-500'>{props.userId}</span></div>
@@ -36,4 +41,4 @@ function userlist(props: userDetail) {
     )
 }
 
-export default userlist;
+export default Userlist;

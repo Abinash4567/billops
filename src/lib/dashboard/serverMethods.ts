@@ -203,7 +203,7 @@ export async function fetchSales({ orgId }: { orgId: string }): Promise<Array<Re
             throw new Error("Failed to fetch data");
         }
         const response = await res.json();
-        console.log(response);
+        // console.log(response);
         ans.push({ name: monthName, total: response?.amount });
     }
     return ans;
@@ -227,6 +227,27 @@ export async function fetchUsers({
         throw new Error("Failed to fetch data");
     }
     const response = await res.json();
-    console.log(response.data);
+    // console.log(response.data);
     return response?.data;
 }
+
+export async function fetchUserDetail(userId: string) {
+    const res = await fetch(`${Env.APP_URL}/api/userdetail`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+        },
+        body: JSON.stringify({
+            userId,
+        }),
+    });
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+    const response = await res.json();
+    // console.log(response);
+    return response?.data;
+}
+
+

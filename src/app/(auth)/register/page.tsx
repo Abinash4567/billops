@@ -68,7 +68,7 @@ export default function Login() {
                 password: values.password
             })
         })
-        console.log(response);
+        // console.log(response);
 
         if (response.ok) {
 
