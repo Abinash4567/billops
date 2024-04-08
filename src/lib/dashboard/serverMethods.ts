@@ -268,6 +268,6 @@ export async function fetchSubscription({ orgId }: { orgId: string })
         throw new Error("Failed to fetch data");
     }
     const response = await res.json();
-    console.log(response.data);
+    // console.log(response.data);
     return response?.data;
 }

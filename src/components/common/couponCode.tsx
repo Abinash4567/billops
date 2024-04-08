@@ -10,7 +10,7 @@ interface ICoupon {
 const CouponCode: React.FC<{ couponData?: ICoupon }> = ({ couponData }) => {
     const arr = Object.entries(couponData! || {});
     const data:Array<string> = arr.flat();
-    console.log(data);
+    // console.log(data);
     return (
         <div className='features mt-5'>
             {data.map((item, index) => {
