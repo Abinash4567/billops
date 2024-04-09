@@ -49,7 +49,10 @@ const EditSub: FC<props> = ({ subdetail }) => {
   });
 
   const flattenedCoupon: Array<string> = refineData(subdetail.couponCodes); 
+  const flattenedFeatures: Array<string> = refineData(subdetail.features);
   const [couponData, setCouponData] = useState(flattenedCoupon);
+  const [featureData, setFeatureData] = useState(flattenedFeatures);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -66,9 +69,10 @@ const EditSub: FC<props> = ({ subdetail }) => {
   //   });
   // };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     console.log(formData);
+    console.log(couponData);
+    console.log(featureData);
   };
 
   return (
@@ -85,7 +89,7 @@ const EditSub: FC<props> = ({ subdetail }) => {
           </SheetDescription>
         </SheetHeader>
         <div className="border border-white rounded-xl px-7 w-[350px] mt-3 py-3 overflow-y-auto">
-          <form onSubmit={handleSubmit}>
+          <form>
       
             <label className="text-slate-400">
               Type:
@@ -110,7 +114,7 @@ const EditSub: FC<props> = ({ subdetail }) => {
             </label>
 
             <div className="flex flex-col gap-4">
-            <EditFeature />
+            <EditFeature featureData={featureData} setFeatureData={setFeatureData}/>
             <EditCoupon couponData={couponData} setCouponData={setCouponData}/>
             </div>
             
@@ -158,13 +162,14 @@ const EditSub: FC<props> = ({ subdetail }) => {
                 />
               </label>
             </div>
-            <br />
-            <Button type="submit">Make changes</Button>
           </form>
         </div>
         <SheetFooter>
           <SheetClose asChild>
-            <div className="text-sm text-slate-400">*current changes will be applied to customer billing.</div>
+            <div className="flex flex-col mt-3">
+            <Button onClick={()=>handleSubmit()}type="submit">Save changes</Button>
+            <div className="text-sm text-slate-400 mt-2">*current changes will be applied to customer billing.</div>
+            </div>
           </SheetClose>
         </SheetFooter>
       </SheetContent>
