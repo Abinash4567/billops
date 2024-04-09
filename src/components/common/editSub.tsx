@@ -16,10 +16,12 @@ import {
 import { Input } from "../ui/input";
 import EditFeature from "./editFeature";
 import EditCoupon from "./editCoupon";
+import { useRouter } from "next/navigation";
+import { toast } from "../ui/use-toast";
 
 
 interface props {
-    subdetail: { id: number,
+    subdetail: { id?: number,
                 type: string,
                 intendedAudience: string,
                 price: number,
@@ -40,6 +42,7 @@ const refineData = (data: Record<string, string>)=>{
   return temp;
 }
 const EditSub: FC<props> = ({ subdetail }) => {
+  const router = useRouter();
   const { type, price, validity, intendedAudience } = subdetail;
   const [formData, setFormData] = useState({
     type: type,
@@ -69,10 +72,57 @@ const EditSub: FC<props> = ({ subdetail }) => {
   //   });
   // };
 
-  const handleSubmit = () => {
-    console.log(formData);
-    console.log(couponData);
-    console.log(featureData);
+  const handleSubmit = async() => {
+    // console.log(formData);
+    // console.log(couponData);
+    // console.log(featureData);
+    let coupon = {};
+    let feature = {};
+    for(let i=0; i<couponData.length; i+=2)
+    {
+      let dd:string = couponData[i];
+      let ee:string = couponData[i+1];
+      coupon = {...coupon, [dd]:ee};
+    }
+
+    for(let i=0; i<featureData.length; i+=2)
+    {
+      let dd:string = featureData[i];
+      let ee:string = featureData[i+1];
+      feature = {...feature, [dd]:ee};
+    }
+
+    // const couponjson = JSON.stringify(coupon);
+    // const featurejson = JSON.stringify(feature);
+    const response = await fetch('/api/dashboard/editSubscription', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        subId: subdetail.id,
+        data: {...formData, coupon, feature}
+      })
+  })
+  // console.log(response);
+
+  if (response.ok) {
+
+      toast({
+          title: "Updates were done.",
+          description: "Proceed to Subscriptions.",
+      })
+  }
+  else {
+      toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem updating your subscription Model.",
+      })
+      console.error(`Registration failed.`)
+  }
+  router.refresh();
+
   };
 
   return (
@@ -176,6 +226,5 @@ const EditSub: FC<props> = ({ subdetail }) => {
     </Sheet>
   );
 };
-
 
 export default EditSub;
