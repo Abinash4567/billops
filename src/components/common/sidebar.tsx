@@ -65,7 +65,7 @@ const Sidebar = () => {
         signOut({ callbackUrl: `${Env.APP_URL}`});
     }
     return (
-        <div className="flex flex-col justify-between top-0 left-0 h-screen w-56 shadow-lg p-4 border-r-2 ">
+        <div className="flex flex-col justify-between top-0 left-0 h-screen w-56 shadow-lg p-4 border-r-2">
             <div className="flex flex-col space-y-10 w-full">
                 <Link href='/dashboard'><Image
                         src={logo}

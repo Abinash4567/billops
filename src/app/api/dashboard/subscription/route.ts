@@ -6,8 +6,8 @@ export async function POST(req: Request, res: Response) {
         return new Response(JSON.stringify({ message: "Missing Parameter" }), {
             status: 400,
             headers: {
-                'Content-Type': 'application/json',
-            }
+                "Content-Type": "application/json",
+            },
         });
     }
 
@@ -16,7 +16,7 @@ export async function POST(req: Request, res: Response) {
             where: {
                 organizationId: parseInt(orgId),
             },
-            select:{
+            select: {
                 id: true,
                 type: true,
                 intendedAudience: true,
@@ -24,23 +24,25 @@ export async function POST(req: Request, res: Response) {
                 features: true,
                 couponCodes: true,
                 validity: true,
-            }
+            },
+            orderBy: {
+                price: "asc",
+            },
         });
 
         return new Response(JSON.stringify({ data: subscriptions }), {
-        status: 200,
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-} 
-catch (error) {
-    console.error(error);
-    return new Response(JSON.stringify({ message: "Internal Server Error" }), {
-        status: 500,
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
-}
+            status: 200,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        return new Response(JSON.stringify({ message: "Internal Server Error" }), {
+            status: 500,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
 }

@@ -146,7 +146,7 @@ export async function fetchPotentialsChange({ orgId }: { orgId: String }) {
 }
 
 
-export async function fetchTranscation({ orgId }: { orgId: String }) {
+export async function fetchTranscation({ orgId }: { orgId: string }) {
     const res = await fetch(`${Env.APP_URL}/api/dashboard/recentSale`, {
         method: 'POST',
         headers: {

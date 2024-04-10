@@ -51,7 +51,7 @@ const EditCoupon: FC<props> = ({ featureData, setFeatureData }) => {
                     </DialogDescription>
                 </DialogHeader>
                 <div>
-                    <div className='text-slate-300 text-sm'><span className='mr-16'>Coupon Code</span><span>Discount (%)</span></div>
+                    <div className='text-slate-300 text-sm'><span className='mr-32'>Feature</span><span>Amount / Presence</span></div>
                     <form>
                         {featureData.length < 2 ? <div onClick={() => setFeatureData([...featureData, "", ""])} className='hover:bg-slate-900 w-12 h-9 ml-24 cursor-pointer mb-3 rounded-full flex items-center justify-center'><Plus size={20} color="#ffffff" strokeWidth={3} /></div> : null}
                         {featureData.map((field: string, index: number) =>

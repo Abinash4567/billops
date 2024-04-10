@@ -56,6 +56,7 @@ model UserModel {
   trans      TranscationModel[]
   planId     Int
   plan       SubModel           @relation(fields: [planId], references: [id])
+// plan       SubModel           @relation(fields: [planId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index(fields: [name])
 }
@@ -74,3 +75,5 @@ model TranscationModel {
 
   @@index(fields: [userId, subId])
 }
+
+
