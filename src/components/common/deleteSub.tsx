@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation'
 
 export function DeleteSub({ subId }: { subId: number }) {
     const router = useRouter();
-    console.log(subId)
+    // console.log(subId)
     async function handleDelete(subId: number) {
             const response = await fetch('/api/dashboard/deleteSub', {
                 method: 'POST',

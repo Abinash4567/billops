@@ -100,8 +100,8 @@ const AddSub = () => {
             let ee: string = featureData[i + 1];
             feature = { ...feature, [dd]: ee };
         }
-        console.log(coupon);
-        console.log(feature);
+        // console.log(coupon);
+        // console.log(feature);
 
         // const couponjson = JSON.stringify(coupon);
         // const featurejson = JSON.stringify(feature);
@@ -117,7 +117,7 @@ const AddSub = () => {
                 data: { ...formData, coupon, feature }
             })
         })
-        console.log(response);
+        // console.log(response);
 
         if (response.ok) {
 

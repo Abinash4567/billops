@@ -25,7 +25,7 @@ export async function POST(req: Request) {
             couponCodes: updatedData.coupon,
             validity: parseInt(updatedData.validity),
         };
-        console.log(validatedUpdateData);
+        // console.log(validatedUpdateData);
         const updatedSubModel = await db.subModel.create({
             data: validatedUpdateData
             // {

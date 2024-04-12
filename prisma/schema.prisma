@@ -55,8 +55,8 @@ model UserModel {
   planExpiry DateTime?
   trans      TranscationModel[]
   planId     Int
-  plan       SubModel           @relation(fields: [planId], references: [id])
-// plan       SubModel           @relation(fields: [planId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  // plan       SubModel           @relation(fields: [planId], references: [id])
+  plan       SubModel           @relation(fields: [planId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index(fields: [name])
 }

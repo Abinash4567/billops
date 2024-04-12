@@ -271,3 +271,24 @@ export async function fetchSubscription({ orgId }: { orgId: string })
     // console.log(response.data);
     return response?.data;
 }
+
+export async function fetchSubscriptionaa()
+{
+    const res = await fetch(`${Env.APP_URL}/api/v1/userdetail`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "uz-&qYPKjy"
+        },
+        body: JSON.stringify({
+            orgId: 1,
+            userId: "user1"
+        }),
+    });
+    if (!res.ok) {
+        throw new Error("Failed to fetch data");
+    }
+    const response = await res.json();
+    // console.log(response);
+    return response;
+}

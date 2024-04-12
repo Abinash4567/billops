@@ -35,7 +35,7 @@ export default async function Subscriptions() {
         <AddSub />
       </div>
 
-      <div className="flex flex-row flex-wrap basis-1/3 h-[calc(100vh-110px)] overflow-y-scroll">
+      <div className="flex flex-row flex-wrap basis-1/3 h-[calc(100vh-110px)] overflow-y-scroll no-scrollbar">
         {subDetail.map((subDetailInd, index: number) => (
           <div key={index} className="border border-white rounded-xl p-7 w-[340px] mr-3 mb-3">
             <div className="text-3xl font-semibold text-center mb-7">{subDetailInd.type}</div>
