@@ -39,7 +39,6 @@ const User: FC<PageProps> = async ({ params }) => {
                 <div className="text-slate-300 text-sm">Plan: <span className="text-white font-medium">{userData.plan.type}</span></div>
                 <div className="text-slate-300 text-sm">Next Billing Date: <span className="text-white font-medium">{userData.planExpiry.toLocaleString().replace('-', '/').split('T')[0].replace('-', '/')}</span></div>
             </div>
-            ItransDetail
             <div className="mt-5">
                 <div className="font-semibold tracking-tight text-slate-300 border-b border-b-slate-100">Events</div>
                 {transDetail.map((d, i) => (

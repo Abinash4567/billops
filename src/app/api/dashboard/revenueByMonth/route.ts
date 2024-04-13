@@ -18,8 +18,8 @@ export async function POST(req: Request) {
                     organizationId: parseInt(orgId),
                 },
                 created_at: {
-                    gte: startDate,
-                    lte: endDate,
+                    gt: startDate,
+                    lt: endDate,
                 },
                 status : true,
             },

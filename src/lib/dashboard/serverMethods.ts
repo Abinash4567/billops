@@ -205,6 +205,7 @@ export async function fetchSales({ orgId }: { orgId: string }): Promise<Array<Re
         const response = await res.json();
         // console.log(response);
         ans.push({ name: monthName, total: response?.amount });
+        console.log(response?.amount);
     }
     return ans;
 }

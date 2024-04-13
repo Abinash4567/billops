@@ -1,16 +1,17 @@
 import { db } from "@/lib/prisma";
 
 export async function POST(req: Request, res: Response) {
-    try {
-    const { orgId } = await req.json();
-    let key = req.headers.get("x-api-key");
-    const orgKey = await db.orgModel.findUnique({
-        where: {
-            id: orgId,
-        },
-        select: {
-            APIKey: true,
-        },
+    try 
+    {
+        const { orgId } = await req.json();
+        let key = req.headers.get("x-api-key");
+        const orgKey = await db.orgModel.findUnique({
+            where: {
+                id: parseInt(orgId),
+            },
+            select: {
+                APIKey: true,
+            },
     });
 
     if (!orgKey || orgKey.APIKey !== key) {
@@ -25,8 +26,9 @@ export async function POST(req: Request, res: Response) {
         );
     }
     const subscriptions = await db.subModel.findMany({
-        where: { organizationId: orgId },
+        where: { organizationId: parseInt(orgId) },
         select: {
+            id: true,
             type:true,
             intendedAudience: true,
             price: true,

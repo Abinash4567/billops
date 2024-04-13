@@ -71,7 +71,8 @@ export default function BarChart({ orgId }: { orgId: string }) {
             try {
                 const data = await fetchSales({ orgId });
                 // console.log(data);
-                setData(data);                return data;
+                setData(data);                
+                // return data;
             } catch (error) {
                 throw new Error("Error fetching Data");
             }
