@@ -4,7 +4,7 @@ import { BellDot, Cable, Mail, ReceiptEuro, ReceiptText, TicketPercent } from 'l
 function section() {
     return (
         <>
-            <div className='ml-28 mr-20 pb-5'>
+            <div className='ml-28 mr-20 pb-5' id='services'>
                 <span className='text-5xl font-bold'>Sign up & </span>
                 <span className='text-4xl text-slate-400 leading-relaxed'> Everything you need to bring your business to the next level.</span>
 

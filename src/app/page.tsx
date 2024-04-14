@@ -5,6 +5,8 @@ import Trusted from '@/components/common/trusted';
 import Plans from '@/components/common/plans';
 import Faqs from '@/components/common/faqs';
 import Footer from '@/components/common/footer';
+
+
 export default function Home() {
   return (
   <div>
