@@ -2,6 +2,7 @@ import { db } from '@/lib/prisma';
 
 export async function POST(req: Request, res: Response) {
     const { orgId } = await req.json();
+    // console.log(orgId);
     if (!orgId) {
         return new Response(JSON.stringify({ message: "Missing Parameter" }), {
             status: 400,

@@ -205,7 +205,7 @@ export async function fetchSales({ orgId }: { orgId: string }): Promise<Array<Re
         const response = await res.json();
         // console.log(response);
         ans.push({ name: monthName, total: response?.amount });
-        console.log(response?.amount);
+        // console.log(response?.amount);
     }
     return ans;
 }
@@ -273,7 +273,7 @@ export async function fetchSubscription({ orgId }: { orgId: string })
     return response?.data;
 }
 
-export async function fetchSubscriptionaa()
+export async function fetchSubscriptionaa()                  //Testing
 {
     const res = await fetch(`${Env.APP_URL}/api/v1/userdetail`, {
         method: "POST",
@@ -288,6 +288,26 @@ export async function fetchSubscriptionaa()
     });
     if (!res.ok) {
         throw new Error("Failed to fetch data");
+    }
+    const response = await res.json();
+    // console.log(response);
+    return response;
+}
+
+
+export async function setAPIKey({orgId, key}: {orgId: number, key: string}){
+    const res = await fetch(`${Env.APP_URL}/api/dashboard/setapi`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            orgId: orgId,
+            key: key
+        }),
+    });
+    if (!res.ok) {
+        throw new Error("Failed to make changes");
     }
     const response = await res.json();
     // console.log(response);
