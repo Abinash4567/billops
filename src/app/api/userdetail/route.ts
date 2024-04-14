@@ -46,7 +46,7 @@ export async function POST(req: Request, res: Response) {
     let { userId } = await req.json();
 
     try {
-        userId = userId + "\n";
+        // userId = userId + "\n";
         const fetchedUserDetail = await db.userModel.findFirst({
             where: { userId: userId.toString() },
             select: {

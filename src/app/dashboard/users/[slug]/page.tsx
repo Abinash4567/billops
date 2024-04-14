@@ -13,7 +13,7 @@ const User: FC<PageProps> = async ({ params }) => {
     // console.log(userData);
     const transDetail: Array<ITranscationDetail> = userData.trans;
     return (
-        <div className="mt-6 ml-5 w-[calc(100vw-600px)]">
+        <div className="pt-6 pl-5 w-[calc(100vw-600px)] overflow-y-scroll no-scrollbar h-screen">
             <div className="font-bold leading-none tracking-tight text-slate-300">User <div className="text-2xl text-green-600">{userData.name}</div></div>
             <div className="mt-5">
                 <div className="font-semibold tracking-tight text-slate-300 border-b border-b-slate-100">User details</div>
