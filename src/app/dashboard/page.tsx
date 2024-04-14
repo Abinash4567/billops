@@ -44,7 +44,7 @@ export default async function Dashboard() {
   const numberOfTranscations = transactionData[1];
 
   return (
-    <div className="mt-12 ml-6 w-full">
+    <div className="pt-4 ml-6 w-full overflow-y-scroll h-lvh no-scrollbar">
       <h2 className="text-3xl font-bold ">Hi, Welcome back 👋</h2>
       <Analytics orgId={orgId} />
       <div className="flex mt-5">

@@ -1,15 +1,18 @@
-'use client'
-import { fetchSubscriptionaa } from '@/lib/dashboard/serverMethods';
-import React from 'react'
+'use client';
+import Endpoint from '@/components/common/endpoint';
+import { Button } from '@/components/ui/button'
+import React, { useState } from 'react'
 
 export default function Docs() {
-  async function handleClick(){
-    const res = await fetchSubscriptionaa();
-    console.log(res);
-  }
+  const [option, setOption] = useState<boolean>(false);
   return (
-    <div className='ml-5 mt-5'>
-      <div onClick={handleClick}className='text-4xl font-extrabold leading-none tracking-tight bg-red-400'>API Endpoints</div>
+    <div className='pl-5 pt-5 overflow-y-scroll h-screen no-scrollbar'>
+      <div>
+          {!option ? (<Button variant="secondary" className='mr-4'>Endpoints</Button>): (<Button onClick={()=>setOption(!option)} variant="outline" className='mr-4'>Endpoints</Button>)}
+          {option ? (<Button variant="outline">Webhooks</Button>): (<Button onClick={()=>setOption(!option)} variant="outline">Webhooks</Button>)}
+      </div>
+
+      {!option && <Endpoint />}
     </div>
   )
 }

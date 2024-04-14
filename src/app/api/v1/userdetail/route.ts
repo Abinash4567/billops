@@ -16,7 +16,7 @@ export async function POST(req: Request, res: Response) {
 
         if (!orgKey || orgKey.APIKey !== key || !userId) {
             return new Response(
-                JSON.stringify({ message: "We are unable to find your organization." }),
+                JSON.stringify({ message: "We are unable to find your organization or user." }),
                 {
                     status: 404,
                     headers: {

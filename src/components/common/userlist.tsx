@@ -13,7 +13,7 @@ function Userlist(props: userDetail) {
     let bb = props.planExpiry!;
     let check = today > bb;
     return (
-        <div onClick={()=>handleClick(props.userId)} className='grid grid-flow-col justify-stretch w-[calc(100vw-224px)] mt-10 ml-5 border border-slate-400 rounded-md p-3 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out'>
+        <div onClick={()=>handleClick(props.userId)} className='grid grid-flow-col justify-stretch w-[calc(100vw-224px)] mt-5 ml-5 border border-slate-400 rounded-md p-3 cursor-pointer hover:bg-slate-800 transition duration-200 ease-in-out'>
 
             <div className='justify-stretch text-xs text-slate-300 font-semibold leading-relaxed'>
                 <div>Customer Id: <span className='text-sm text-blue-500'>{props.userId}</span></div>
