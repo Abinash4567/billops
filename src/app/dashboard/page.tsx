@@ -44,13 +44,13 @@ export default async function Dashboard() {
   const numberOfTranscations = transactionData[1];
 
   return (
-    <div className="pt-4 ml-6 w-full overflow-y-scroll h-lvh no-scrollbar">
+    <div className="pt-4 ml-6 w-full">
       <h2 className="text-3xl font-bold ">Hi, Welcome back 👋</h2>
       <Analytics orgId={orgId} />
       <div className="flex mt-5">
         <Chart orgId={orgId} />
 
-        <CardContent className="ml-2 pt-2 justify-between gap-4 w-1/2 border border-slate-400 rounded-lg">
+        <CardContent className="ml-2 pt-2 justify-between gap-4 w-1/2 border border-slate-400 rounded-lg overflow-y-scroll no-scrollbar h-[400px]">
           <section>
             <div>Recent Sales</div>
             <div className="text-sm text-gray-400">
