@@ -184,8 +184,8 @@ Status Code: 500
 		  {
 		    "userId": 1,
 		    "subId" 12,
-        "name": "foo",
-        "email": "foo@bar.com", 
+                    "name": "foo",
+                    "email": "foo@bar.com", 
 		    "address": "Razorpay Corporate Office"
 		  },
 		  bank: 'PUNB_R',
@@ -205,9 +205,17 @@ Status Code: 500
 		  reward: null,
 		  base_amount: 49900
 	     }
+
+
+
          } 
   },
   created_at: 1713188034
 }
 ```
+
+# Database Model
+<img src="https://github.com/Abinash4567/billops/assets/98229006/650e670b-5e44-42de-b84d-3046a9bb44d9" alt="logo">
+
+
 ___
