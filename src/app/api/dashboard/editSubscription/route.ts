@@ -1,14 +1,14 @@
 import { db } from "@/lib/prisma";
 
 
-interface IValidate {
-    type: string,
-    intendedAudience: string,
-    price: number,
-    features: JSON,
-    couponCodes: JSON,
-    validity: number
-}
+// interface IValidate {
+//     type: string,
+//     intendedAudience: string,
+//     price: number,
+//     features: JSON,
+//     couponCodes: JSON,
+//     validity: number
+// }
 
 export async function POST(req: Request) {
     try {
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
         const { subId, ...data } = body;
         let updatedData = data.data;
         // console.log(updatedData);
-        const validatedUpdateData: IValidate = {
+        const validatedUpdateData = {
             type: updatedData.type,
             intendedAudience: updatedData.intendedAudience,
             price: updatedData.price,
