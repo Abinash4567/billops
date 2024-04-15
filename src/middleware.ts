@@ -8,7 +8,8 @@ export function middleware(request: NextRequest) {
 
     const isPublicPath = path === '/login' || path === '/register' || path==='/dashboard/docs';
 
-    const token = request.cookies.get('__Secure-next-auth.session-token')?.value || ''
+    const token = request.cookies.get('__Secure-next-auth.session-token')?.value || ''   //deployment
+    // const token = request.cookies.get('next-auth.session-token')?.value || ''   //local run
 
     if (isPublicPath && token) {
         return NextResponse.redirect(new URL('/', request.nextUrl))
