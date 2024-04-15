@@ -43,7 +43,7 @@ To run this project locally, follow these steps:
 3. Mangage Users, Subscription under dashboard.
 
 # API Endpoints
-### POST        /api/v1/userdetail
+### POST        /api/v1/subdetail
 
 **Parameters**
 
@@ -51,7 +51,6 @@ To run this project locally, follow these steps:
 |  :----------------:   |:------------------:|:-------------:| :-----------------------------------: |
 |     `orgId`    | required | Int  | Organization Key acts like unique key to identify your organization which is to be passed inside body. To see your organization key, head over to setting under dashboard.                                                                   |
 |  `APIKey` | required | string  | API key is high security string which protects endpoint from misuse. Every organization registered under billops has unique one and can be regenerated according to your requirement. It is fired under header section. |
-|  `userId` | required | string  | userId is unique user registered in your organization. |
 
 **Response**
 status Code: 200
