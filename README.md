@@ -90,4 +90,57 @@ Status Code: 404
     "message": "We are unable to find your organization."
 }
 ```
+or 
+Status Code: 500
+```
+{
+  message: "Internal Server Error"
+}
+```
+
+
+### POST        /api/v1/subdetail
+
+**Parameters**
+
+|          Name         |      Required      |      Type     |     Description    |
+|  :----------------:   |:------------------:|:-------------:| :-----------------------------------: |
+|     `orgId`    | required | Int  | Organization Key acts like unique key to identify your organization which is to be passed inside body. To see your organization key, head over to setting under dashboard.   |
+|  `userId` | required | string  | userId is unique user registered in your organization. |
+|  `APIKey` | required | string  | API key is high security string which protects endpoint from misuse. Every organization registered under billops has unique one and can be regenerated according to your requirement. It is fired under header section. |
+
+
+**Response**
+status Code: 200
+```
+{
+    "userDetail": [
+        {
+            "id": 1,
+            "name": "foo",
+            "email": "foo@gmail.com",
+            "planExpiry": "2024-10-13T17:39:47.415Z",
+            "planType": "Premium"
+        }
+    ]
+}
+```
+
+
+or
+Status Code: 404
+
+```
+{
+    "message": "We are unable to find your organization or user."
+}
+```
+
+or 
+Status Code: 500
+```
+{
+  message: "Internal Server Error"
+}
+```
 ___
