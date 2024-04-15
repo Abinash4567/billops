@@ -41,3 +41,54 @@ To run this project locally, follow these steps:
 1. After setting up the project locally, access the application at `localhost:3000`.
 2. Create an account or log in.
 3. Mangage Users, Subscription under dashboard.
+
+# API Endpoints
+### POST        /api/v1/userdetail
+
+**Parameters**
+
+|          Name         |      Required      |      Type     |     Description    |
+|  :----------------:   |:------------------:|:-------------:| :-----------------------------------: |
+|     `orgId`    | required | Int  | Organization Key acts like unique key to identify your organization which is to be passed inside body. To see your organization key, head over to setting under dashboard.                                                                   |
+|  `APIKey` | required | string  | API key is high security string which protects endpoint from misuse. Every organization registered under billops has unique one and can be regenerated according to your requirement. It is fired under header section. |
+|  `userId` | required | string  | userId is unique user registered in your organization. |
+
+**Response**
+status Code: 200
+```
+{
+    "subscriptionDetail": [
+        {
+            "id": 1,
+            "type": "Premium",
+            "intendedAudience": "Freelancer, Education",
+            "price": "13",
+            "features": {
+                "Updates": "No",
+                "Revisions": "No",
+                "Team Size": "2",
+                "Web hooks": "No",
+                "Video Client": "No",
+                "24 Hour Update": "Yes",
+                "Customer Support": "No"
+            },
+            "couponCodes": {
+                "hello": "23",
+                "selllo": "12"
+            },
+            "validity": 6
+        }
+    ]
+}
+```
+
+
+or
+Status Code: 404
+
+```
+{
+    "message": "We are unable to find your organization."
+}
+```
+___
