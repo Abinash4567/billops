@@ -143,4 +143,71 @@ Status Code: 500
   message: "Internal Server Error"
 }
 ```
+
+
+# Webhook
+### POST        /api/v1/verifypayment
+
+**Parameters**
+1. Webhook integrated from  Razorpay on payment capture
+2. `userId` and `subId` are required under notes field to validate payment.
+3. `name` and `email` are optional for recurring user but compulsory for new user (Best to include everytime).
+
+**Sample Response from Razorpay**
+```
+{
+  entity: 'event',
+  account_id: 'acc_M8U2zJ2Lq8Frjk',
+  event: 'payment.captured',
+  contains: [ 'payment' ],
+  payload: 
+  { 
+     payment: 
+     	{ 
+           entity: 
+  	     {
+		  id: 'pay_NyurD8IVtZ7zpk',
+		  entity: 'payment',
+		  amount: 49900,
+		  currency: 'INR',
+		  status: 'captured',
+		  order_id: 'order_NyuqYOVecmJ4sX',
+		  invoice_id: null,
+		  international: false,
+		  method: 'netbanking',
+		  amount_refunded: 0,
+		  refund_status: null,
+		  captured: true,
+		  description: 'Thank you for nothing. Please give us some money',
+		  card_id: null,
+		  "notes": 
+		  {
+		    "userId": 1,
+		    "subId" 12,
+        "name": "foo",
+        "email": "foo@bar.com", 
+		    "address": "Razorpay Corporate Office"
+		  },
+		  bank: 'PUNB_R',
+		  wallet: null,
+		  vpa: null,
+		  email: 'void@razorpay.com',
+		  contact: '+918797837542',
+		  fee: 1178,
+		  tax: 180,
+		  error_code: null,
+		  error_description: null,
+		  error_source: null,
+		  error_step: null,
+		  error_reason: null,
+		  acquirer_data: { bank_transaction_id: '8435702' },
+		  created_at: 1713188029,
+		  reward: null,
+		  base_amount: 49900
+	     }
+         } 
+  },
+  created_at: 1713188034
+}
+```
 ___
