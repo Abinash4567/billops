@@ -57,7 +57,7 @@ export async function POST(req: Request, res: Response) {
             response.push(temp);
         }
 
-        return new Response(JSON.stringify({ user: userId, orgId: orgId, key: key, orgKey: orgKey, userdetail: user, response: response }), {
+        return new Response(JSON.stringify({ user: userId, orgId: orgId, response: response }), {
             status: 200,
             headers: {
                 "Content-Type": "application/json",
