@@ -48,6 +48,13 @@ export default function Settings() {
         </span>
       </div>
 
+      <div className="mt-5 text-slate-400">
+        OrgId:{" "}
+        <span className="font-semibold tracking-wide text-slate-300">
+          {orgId}
+        </span>
+      </div>
+
       <div className="mt-2 text-slate-400">
         Work Email:{" "}
         <span className="font-semibold tracking-wide text-slate-300">
