@@ -14,17 +14,17 @@ export async function POST(req: Request, res: Response) {
             },
     });
 
-    if (!orgKey || orgKey.APIKey !== key) {
-        return new Response(
-            JSON.stringify({ message: "We are unable to find your organization." }),
-            {
-                status: 404,
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-    }
+    // if (!orgKey || orgKey.APIKey !== key) {
+    //     return new Response(
+    //         JSON.stringify({ message: "We are unable to find your organization." }),
+    //         {
+    //             status: 404,
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //         }
+    //     );
+    // }
     const subscriptions = await db.subModel.findMany({
         where: { organizationId: parseInt(orgId) },
         select: {
