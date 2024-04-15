@@ -21,7 +21,7 @@ model OrgModel {
   password      String
   address       String?
   workEmail     String
-  contact       String?    @unique
+  contact       String?    
   subscriptions SubModel[]
   created_at    DateTime   @default(now())
 

@@ -100,7 +100,7 @@ export async function POST(req: Request, res: Response) {
                     userId: userdata.id,
                     subId: planId,
                     receipt: receipt,
-                    amount: receipt.amount,
+                    amount: (receipt.amount / 100),
                     status: true,
                     orderId: receipt.order_id,
                 },
